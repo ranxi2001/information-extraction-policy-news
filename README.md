@@ -42,10 +42,32 @@
 
 ## 模型微调（训练）
 
+1. 准备好标注好的数据`doccano_ext.json`，放进uie-model目录下的data文件夹内
+2. 运行`tran.sh`，就会将从doccano导出的标注数据转化为模型的输入数据和测试数据
+3. 运行`train.sh`，就可以开始训练`uie-base`模型，训练结束后会保存模型到checkpoint目录下的model_best路径下
 
+## 模型测试
 
-## 测试模型准确率
+### 整体模型性能测试
 
+运行`model_evaluation.sh`，就可以开始测试整个模型的精确率，召回率了，本模型的F1score能够达到96%，满足题目要求。
 
+![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/all test.jpg)
 
-## 测试各类实体的精确率和召回率
+### 各类实体和关系性能测试
+
+运行`model_debug.sh`，就可以开始测试整个模型的精确率，召回率了，
+
+**实体识别**准确率（指F1Score）仅有1/11个低于95%，其余均高于95%
+
+![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/20230528154117.png)
+
+**关系提取**准确率（指F1Score）仅有1/7个低于95%，其余均高于95%
+
+![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/20230528154341.png)
+
+## 参数调整
+
+参数调整请看UIE模型的参数介绍文档：`./uie-model/README.md`
+
+或者在线版：[PaddleNLP/README.md at develop · PaddlePaddle/PaddleNLP (github.com)](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/model_zoo/uie/README.md#模型微调)
