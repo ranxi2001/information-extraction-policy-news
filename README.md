@@ -52,7 +52,7 @@
 
 运行`model_evaluation.sh`，就可以开始测试整个模型的精确率，召回率了，本模型的F1score能够达到96%，满足题目要求。
 
-![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/all test.jpg)
+![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/all-test.jpg)
 
 ### 各类实体和关系性能测试
 
