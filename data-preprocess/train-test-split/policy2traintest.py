@@ -3,9 +3,9 @@ import random
 import shutil
 
 # set paths
-source_path = "../data-preprocessed/new-policy"
-train_path = "../data-final/policy/train"
-test_path = "../data-final/policy/test"
+source_path = "../../data-preprocessed/new-policy"
+train_path = "../../data-final/policy/train"
+test_path = "../../data-final/policy/test"
 
 # create train and test folders if they don't exist
 if not os.path.exists(train_path):
