@@ -38,6 +38,7 @@
 		--model_debug.sh：测试各个类型的实体和关系的精确率和召回率的脚本
 		--其余py文件：模型训练与测试等代码不用修改
 	--autoapi.py：在服务器上提供api，通过接口访问模型并返回预测结果的脚本
+	--localtest.py：在本地对事先输入的文本进行预测并返回预测结果的脚本
 ```
 
 ## 模型微调（训练）
@@ -58,13 +59,13 @@
 
 运行`model_debug.sh`，就可以开始测试整个模型的精确率，召回率了，
 
-**实体识别**准确率（指F1Score）仅有1/11个低于95%，其余均高于95%
+**实体识别**精确率、召回率、F1-Score均高于95%.
 
-![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/20230528154117.png)
+![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/20230601223054.png)
 
-**关系提取**准确率（指F1Score）仅有1/7个低于95%，其余均高于95%
+**关系提取**准确率（指F1Score）仅有1/7个(政策的针对地区)低于95%，其余均高于95%
 
-![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/20230528154341.png)
+![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/20230601223434.png)
 
 ## 参数调整
 
