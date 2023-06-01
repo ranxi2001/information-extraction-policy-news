@@ -8,6 +8,8 @@
 > 参加竞榜的选题名称： 基于信创的学习迁移模型构建知识图谱
 >
 > 申报作品具体名称： 融智图谱——学习迁移模型构建知识图谱
+>
+> 负责人：冉熙 19143656913
 
 # 使用说明
 
@@ -72,3 +74,5 @@
 参数调整请看UIE模型的参数介绍文档：`./uie-model/README.md`
 
 或者在线版：[PaddleNLP/README.md at develop · PaddlePaddle/PaddleNLP (github.com)](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/model_zoo/uie/README.md#模型微调)
+
+有关doccano自动标注，AIStudio 使用A100 GPU训练项目可以联系我：19143656913
