@@ -10,7 +10,7 @@ schema = ['政策', '政府机构', '省份','城市地点','人名','人的代�
 # 第一运行时，联网状态下会自动下载模型
 # device_id为gpu id，如果写-1则使用cpu,如果写0则使用gpu
 # ie = Taskflow('information_extraction', schema=schema, device_id=0,task_path='./doccano/uie/checkpoint/model_best/')
-ie = Taskflow('information_extraction', schema=schema, device_id=0,task_path='./doccano/uie/checkpoint/model_best3800/')
+ie = Taskflow('information_extraction', schema=schema, device_id=0,task_path='./uie-model/checkpoint/model_best3800')
 
 def convert(result):
     result = result[0]
@@ -25,6 +25,9 @@ def convert(result):
                 })
 
     return formatted_result
+# @app.route('/test', methods=['GET'])
+# def test():
+#     return "API is working!"
 
 
 @app.route('/', methods=['POST'])

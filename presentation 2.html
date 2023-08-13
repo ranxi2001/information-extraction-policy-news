@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>命名实体识别可视化</title>
+    <style>
+        .entity {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 输入文本 -->
+<div>
+    <label for="inputText">请输入文本：</label>
+    <textarea id="inputText" rows="4" cols="50"></textarea>
+    <button onclick="annotateEntities()">开始标注</button>
+</div>
+
+<!-- 输入API地址 -->
+<div>
+    <label for="apiEndpoint">API地址：</label>
+    <input type="text" id="apiEndpoint">
+    <button onclick="setApiEndpoint()">设置地址</button>
+</div>
+
+<!-- 显示标注后的文本 -->
+<div id="output"></div>
+
+<script>
+    let apiEndpoint = '';
+
+    function setApiEndpoint() {
+        apiEndpoint = document.getElementById('apiEndpoint').value;
+        alert('API地址设置为: ' + apiEndpoint);
+    }
+
+    async function annotateEntities() {
+    const inputText = document.getElementById('inputText').value;
+
+        try {
+            // Call the API
+            const response = await fetch(apiEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: inputText
+                })
+            });
+
+            // Check if the response is successful
+            if (!response.ok) {
+                throw new Error(`API returned an error: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            const annotatedText = nerToHtml(data, inputText);
+            document.getElementById('output').innerHTML = annotatedText;
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+        }
+    }
+
+function nerToHtml(data, text) {
+    // Convert the NER data into an HTML representation based on your API's response format
+    let entities = [];
+    for (let item of data) {
+        entities.push({
+            type: item.label,
+            start: item.start_offset,
+            end: item.end_offset,
+        });
+    }
+    entities = entities.sort((a, b) => a.start - b.start);
+
+    let htmlParts = [];
+    let lastEnd = 0;
+    for (let entity of entities) {
+        htmlParts.push(text.substring(lastEnd, entity.start));
+        const color = entity.type === '人名' ? 'blue' : 'green';  // Simplified coloring
+        htmlParts.push(`<span class="entity" style="background-color: ${color};" title="${entity.type}">${text.substring(entity.start, entity.end)}</span>`);
+        lastEnd = entity.end;
+    }
+    htmlParts.push(text.substring(lastEnd));
+
+    return htmlParts.join('');
+}
+
+
+
+    function nerToHtml(data, text) {
+        // 将NER数据转换为HTML形式
+        let entities = [];
+        for (let output of data) {
+            for (let entityType in output) {
+                for (let entity of output[entityType]) {
+                    entities.push({
+                        type: entityType,
+                        start: entity.start,
+                        end: entity.end,
+                        text: entity.text,
+                        probability: entity.probability,
+                        relations: entity.relations || {}
+                    });
+                }
+            }
+        }
+        entities = entities.sort((a, b) => a.start - b.start);
+
+        let htmlParts = [];
+        let lastEnd = 0;
+        for (let entity of entities) {
+            htmlParts.push(text.substring(lastEnd, entity.start));
+            const title = `${entity.type} (${entity.probability.toFixed(2)})`;
+            const color = entity.type === '人名' ? 'blue' : 'green';
+            htmlParts.push(`<span class="entity" style="background-color: ${color};" title="${title}">${entity.text}</span>`);
+            lastEnd = entity.end;
+        }
+        htmlParts.push(text.substring(lastEnd));
+
+        return htmlParts.join('');
+    }
+</script>
+
+</body>
+</html>
