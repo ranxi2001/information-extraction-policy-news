@@ -15,3 +15,17 @@ uie-model/checkpoint/model_best3800/.cache_info
 /uie-model/checkpoint/model_best3800/vocab.txt
 /uie-model/checkpoint/model_best3800/trainer_state.json
 
+/uie-model/checkpoint/model_best4000/.cache_info
+/uie-model/checkpoint/model_best4000/all_results.json
+/uie-model/checkpoint/model_best4000/static/
+/uie-model/checkpoint/model_best4000/model.pdiparams
+/uie-model/checkpoint/model_best4000/config.json
+/uie-model/checkpoint/model_best4000/model.pdiparams.info
+/uie-model/checkpoint/model_best4000/model.pdmodel
+/uie-model/checkpoint/model_best4000/model_state.pdparams
+/uie-model/checkpoint/model_best4000/special_tokens_map.json
+/uie-model/checkpoint/model_best4000/tokenizer_config.json
+/uie-model/checkpoint/model_best4000/train_results.json
+/uie-model/checkpoint/model_best4000/trainer_state.json
+/uie-model/checkpoint/model_best4000/training_args.bin
+/uie-model/checkpoint/model_best4000/vocab.txt
