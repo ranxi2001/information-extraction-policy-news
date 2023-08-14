@@ -15,6 +15,14 @@
 
 > 针对源代码的使用说明
 
+首先需要安装CUDA和PaddlePaddle(飞桨)框架：
+
+[从零开始配置深度学习环境：CUDA+Anaconda+Pytorch+TensorFlow - 孤飞 - 博客园 (cnblogs.com)](https://www.cnblogs.com/ranxi169/p/17318803.html)
+
+[安装飞桨框架-源于产业实践的开源深度学习平台 (paddlepaddle.org.cn)](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/windows-pip.html)
+
+其余库安装按照根目录`requirements.txt`安装即可。
+
 ## 项目架构
 
 ```
@@ -41,6 +49,7 @@
 		--其余py文件：模型训练与测试等代码不用修改
 	--autoapi.py：在服务器上提供api，通过接口访问模型并返回预测结果的脚本
 	--localtest.py：在本地对事先输入的文本进行预测并返回预测结果的脚本
+	--requirements.txt:运行项目需要安装的Python库
 ```
 
 ## 模型微调（训练）
