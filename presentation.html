@@ -3,102 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>命名实体识别可视化</title>
-    <style>
-        .entity {
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/3d-force-graph"></script>
+    <title>NER Visualization Demo</title>
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="row h-100">
+            <div class="col-md-4 h-100">
+                <div id="input"  class="h-50 mb-2">
+                    <div class="card-header">
+                        Input
+                    </div>
+                    <div class="card-body">
+                        <textarea id="inputText" rows="7" cols="70" class="form-control mb-3"></textarea>
+                        <button onclick="visualizeEntities()" class="btn btn-primary">Visualize Entities</button>
+                    </div>
+                </div>
+                <div id="output-text" class="h-50">
+                    <div class="card-header">
+                        Output-text
+                    </div>
+                    <div id="output"></div>
+                </div>
+            </div>
+            <div class="col-md-8 h-100">
+                <div id="output-3d" class="h-100">
+                    <div class="card-header">
+                        Output-graph
+                    </div>
+                    <div id="output3d"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- 输入文本 -->
-<div>
-    <label for="inputText">请输入文本：</label>
-    <textarea id="inputText" rows="4" cols="50"></textarea>
-    <button onclick="annotateEntities()">开始标注</button>
-</div>
 
-<!-- 输入API地址 -->
-<div>
-    <label for="apiEndpoint">API地址：</label>
-    <input type="text" id="apiEndpoint">
-    <button onclick="setApiEndpoint()">设置地址</button>
-</div>
+    <script>
+        'use strict';
 
-<!-- 显示标注后的文本 -->
-<div id="output"></div>
-
-<script>
-    let apiEndpoint = '';
-
-    function setApiEndpoint() {
-        apiEndpoint = document.getElementById('apiEndpoint').value;
-        alert('API地址设置为: ' + apiEndpoint);
-    }
-
-    async function annotateEntities() {
-    const inputText = document.getElementById('inputText').value;
-
-        try {
-            // Call the API
-            const response = await fetch(apiEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    text: inputText
-                })
-            });
-
-            // Check if the response is successful
-            if (!response.ok) {
-                throw new Error(`API returned an error: ${response.statusText}`);
+        class displaCyENT {
+            constructor (options) {
+                this.container = document.querySelector(options.container || '#output');
             }
+            render(text, spans, ents) {
+                this.container.innerHTML = '';
+                let offset = 0;
 
-            const data = await response.json();
-            const annotatedText = nerToHtml(data, inputText);
-            document.getElementById('output').innerHTML = annotatedText;
-        } catch (error) {
-            alert(`Error: ${error.message}`);
-        }
-    }
+                spans.forEach(({ label, start, end }) => {
+                    const entity = text.slice(start, end);
 
+                    const fragments = text.slice(offset, start).split('\n');
+                    console.log(entity,fragments);
+                    fragments.forEach((fragment, i) => {
 
-    function nerToHtml(data, text) {
-        // 将NER数据转换为HTML形式
-        let entities = [];
-        for (let output of data) {
-            for (let entityType in output) {
-                for (let entity of output[entityType]) {
-                    entities.push({
-                        type: entityType,
-                        start: entity.start,
-                        end: entity.end,
-                        text: entity.text,
-                        probability: entity.probability,
-                        relations: entity.relations || {}
+                        this.container.appendChild(document.createTextNode(fragment));
+                        if(fragments.length > 1 && i != fragments.length - 1) this.container.appendChild(document.createElement('br'));
                     });
-                }
+
+                    if(ents.includes(label.toLowerCase())) {
+                        const mark = document.createElement('mark');
+                        mark.setAttribute('data-entity', label.toLowerCase());
+                        mark.appendChild(document.createTextNode(entity));
+                        this.container.appendChild(mark);
+                    }
+
+                    else {
+                        this.container.appendChild(document.createTextNode(entity));
+                    }
+
+                    offset = end;
+                });
+
+                this.container.appendChild(document.createTextNode(text.slice(offset, text.length)));
+
+                //console.log(`%c💥  HTML markup\n%c<div class="entities">${this.container.innerHTML}</div>`, 'font: bold 16px/2 arial, sans-serif', 'font: 13px/1.5 Consolas, "Andale Mono", Menlo, Monaco, Courier, monospace');
+
+                if(typeof this.onRender === 'function') this.onRender();
             }
         }
-        entities = entities.sort((a, b) => a.start - b.start);
 
-        let htmlParts = [];
-        let lastEnd = 0;
-        for (let entity of entities) {
-            htmlParts.push(text.substring(lastEnd, entity.start));
-            const title = `${entity.type} (${entity.probability.toFixed(2)})`;
-            const color = entity.type === '人名' ? 'blue' : 'green';
-            htmlParts.push(`<span class="entity" style="background-color: ${color};" title="${title}">${entity.text}</span>`);
-            lastEnd = entity.end;
-        }
-        htmlParts.push(text.substring(lastEnd));
-
-        return htmlParts.join('');
-    }
-</script>
-
+            function visualizeEntities() {
+                const text = document.getElementById('inputText').value;
+                fetch('http://127.0.0.1:888', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: text })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const displacy = new displaCyENT({
+                        container: '#output',
+                        defaultText: text,
+                        defaultEnts: data.nodes.map(e => e.label)
+                    });
+                    displacy.render(text, data.nodes, data.nodes.map(e => e.label));
+                    const Graph = ForceGraph3D()(document.getElementById('output3d'));
+                    Graph.graphData(data);
+                    Graph.nodeAutoColorBy('label');
+                    Graph.nodeLabel(node => `NodeID: ${node.start}<br>Text: ${node.text}<br>Label: ${node.label}<br>Probability: ${node.probability}`);
+                    Graph.linkLabel(link => `Relation: ${link.relation}<br>Source: ${link.sourceText}<br>Target: ${link.targetText}`);
+                    Graph.linkAutoColorBy(link => link.sourceLabel);
+                    Graph.linkOpacity(0.5);
+                });
+            }
+        </script>
 </body>
 </html>
