@@ -11,12 +11,6 @@ schema = [{"人名": "身份"},{'人的代称':"隶属"},{'政策':"发布单位
 # 设定抽取目标和定制化模型权重路径
 my_ie = Taskflow("information_extraction", schema=schema, task_path='uie-model/checkpoint/model_best4000')
 
-def entity_exists(entities, start, end):
-    for entity in entities:
-        if entity['start'] == start and entity['end'] == end:
-            return True
-    return False
-
 @app.route('/', methods=['POST'])
 def process_text():
     text = request.json['text']
