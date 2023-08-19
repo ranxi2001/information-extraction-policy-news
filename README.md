@@ -62,7 +62,7 @@
 
 1. 准备好标注好的数据`doccano_ext.json`，放进uie-model目录下的data文件夹内
 2. 运行`tran.sh`，就会将从doccano导出的标注数据转化为模型的输入数据和测试数据
-3. 运行`train.sh`，就可以开始训练`uie-base`模型，训练结束后会保存模型到checkpoint目录下的model_best路径下
+3. 运行`train.sh`，就可以开始训练`uie-base`模型，训练结束后会保存模型到checkpoint目录下的model_best路径下,`train.sh`可以根据自己的需求修改参数。
 
 ## 模型测试
 
