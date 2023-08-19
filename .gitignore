@@ -29,3 +29,6 @@ uie-model/checkpoint/model_best3800/.cache_info
 /uie-model/checkpoint/model_best4000/trainer_state.json
 /uie-model/checkpoint/model_best4000/training_args.bin
 /uie-model/checkpoint/model_best4000/vocab.txt
+/uie-model/checkpoint/model_best/
+/uie-model/checkpoint/
+/uie-model/$finetuned_model/
