@@ -1,0 +1,18 @@
+[33mcommit 24f995b761d11aa97581434d190295d3abecd165[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: ranxi2001 <ranxi169@163.com>
+Date:   Sat Aug 19 23:31:09 2023 +0800
+
+    更新项目README.md文档
+
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 4b65469..9c3f1a4 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -90,4 +90,4 @@[m
+ [m
+ 或者在线版：[PaddleNLP/README.md at develop · PaddlePaddle/PaddleNLP (github.com)](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/model_zoo/uie/README.md#模型微调)[m
+ [m
+[31m-有关doccano自动标注，AIStudio 使用A100 GPU训练项目可以联系我：19143656913[m
+\ No newline at end of file[m
+[32m+[m[32m有关doccano自动标注平台搭建，AIStudio 使用A100 GPU训练项目可以联系我：19143656913[m
+\ No newline at end of file[m
