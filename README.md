@@ -90,4 +90,4 @@
 
 或者在线版：[PaddleNLP/README.md at develop · PaddlePaddle/PaddleNLP (github.com)](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/model_zoo/uie/README.md#模型微调)
 
-有关doccano自动标注，AIStudio 使用A100 GPU训练项目可以联系我：19143656913
+有关doccano自动标注平台搭建，AIStudio 使用A100 GPU训练项目可以联系我：19143656913
