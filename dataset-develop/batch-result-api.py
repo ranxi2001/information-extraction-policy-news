@@ -11,7 +11,7 @@ schema = [{"人名": "身份"},{'人的代称':"隶属"},{'政策':"发布单位
 # 第一运行时，联网状态下会自动下载模型
 # device_id为gpu id，如果写-1则使用cpu,如果写0则使用gpu
 # ie = Taskflow('information_extraction', schema=schema, device_id=0,task_path='./doccano/uie/checkpoint/model_best/')
-ie = Taskflow('information_extraction', schema=schema, device_id=0,task_path='./uie-model/checkpoint/model_best4000')
+ie = Taskflow('information_extraction', schema=schema, device_id=0, task_path='../uie-model/checkpoint/model_best4000')
 
 @app.route('/', methods=['POST'])
 def get_result():
