@@ -1,0 +1,112 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    height: 100%;
+    padding: 20px 0;
+}
+
+.row {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+}
+
+#input, #output-text {
+    flex: 1; /* Make them grow equally */
+    border: 1px solid #ddd;
+    overflow: auto;
+}
+
+#output-3d {
+    height: 100%;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+#input {
+    display: flex;
+    flex-direction: column;
+}
+
+#input .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#inputText {
+    flex: 1;
+    resize: none;
+}
+
+[data-entity] {
+    line-height: 2;
+    font-weight: bold;
+    border-bottom: 2px dashed;
+    background: transparent;
+    border-left: 2px dashed;
+    padding-left: 0.35em;
+    border-bottom-left-radius: 5px;
+}
+
+[data-entity]:after {
+    padding: 0.5em 0.5em;
+    content: attr(data-entity);
+    margin-left: 0.75em;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    color: #fff;
+    background: transparent;
+    position: relative;
+    bottom: -2px;
+    vertical-align: middle;
+    border-top-right-radius: 5px;
+}
+
+    /* 实体颜色定义 */
+    [data-entity="政策"] { border-color: #FFDAB9; }
+    [data-entity="政策"]:after {background: #FFDAB9; }
+    [data-entity="政府机构"] { border-color: #FFB6C1; }
+    [data-entity="政府机构"]:after {background: #FFB6C1; }
+    [data-entity="省份"] { border-color: #FFA07A; }
+    [data-entity="省份"]:after {background: #FFA07A; }
+    [data-entity="城市地点"] { border-color: #98FB98; }
+    [data-entity="城市地点"]:after {background: #98FB98; }
+    [data-entity="人名"] { border-color: #ADD8E6; }
+    [data-entity="人名"]:after {background: #ADD8E6; }
+    [data-entity="人的代称"] { border-color: #F0E68C; }
+    [data-entity="人的代称"]:after {background: #F0E68C; }
+    [data-entity="事件工程项目"] { border-color: #E6E6FA; }
+    [data-entity="事件工程项目"]:after {background: #E6E6FA; }
+    [data-entity="会议"] { border-color: #D3D3D3; }
+    [data-entity="会议"]:after {background: #D3D3D3; }
+    [data-entity="法规条例"] { border-color: #FFC0CB; }
+    [data-entity="法规条例"]:after {background: #FFC0CB; }
+    [data-entity="组织机构企业"] { border-color: #B0E0E6; }
+    [data-entity="组织机构企业"]:after {background: #B0E0E6; }
+    [data-entity="新闻杂志融媒体"] { border-color: #FFB6C1; }
+    [data-entity="新闻杂志融媒体"]:after {background: #FFB6C1; }
+    [data-entity="国家"] { border-color: #FFDEAD; }
+    [data-entity="国家"]:after {background: #FFDEAD; }
+    .entities {
+    font: 18px/2.5 Arial, sans-serif;
+    padding: 25px 50px;
+    }
+    .custom-card-body {
+        height: 300px; /* 或您想要的任何其他高度 */
+        overflow-y: auto; /* 当内容超出高度时显示滚动条 */
+        padding-bottom: 2em; /* 添加额外的底部填充，确保实体标签不会与下面的内容重叠 */
+    }
+    * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    }
