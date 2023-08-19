@@ -9,7 +9,7 @@ schema = [{"人名": "身份"},{'人的代称':"隶属"},{'政策':"发布单位
           '政府机构', '省份','城市地点','组织机构企业','新闻杂志融媒体','国家']
 
 # 设定抽取目标和定制化模型权重路径
-my_ie = Taskflow("information_extraction", schema=schema, task_path='uie-model/checkpoint/model_best4000')
+my_ie = Taskflow("information_extraction", schema=schema, task_path='../uie-model/checkpoint/model_best4000')
 
 @app.route('/', methods=['POST'])
 def process_text():
