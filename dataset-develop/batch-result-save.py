@@ -1,6 +1,5 @@
 import requests
 
-
 def three_relation_list(algo_output):
     """
     从算法输出结果中提取三元关系列表
@@ -13,11 +12,10 @@ def three_relation_list(algo_output):
                     if 'relations' in entity:
                         for relation_type, related_entities in entity['relations'].items():
                             for related_entity in related_entities:
-                                relation_list.append(
-                                    [entity['text'].strip(), relation_type.strip(), related_entity['text'].strip()]
-                                )
+                                # 直接构造所需的字符串格式
+                                relation = f"[{entity['text'].strip()},{relation_type.strip()},{related_entity['text'].strip()}]"
+                                relation_list.append(relation)
     return relation_list
-
 
 # Step 1: 读取输入文件
 input_filename = "input.txt"
@@ -54,6 +52,7 @@ with open(output_filename, 'a', encoding='utf-8') as outfile:
 
             # 提取三元关系列表，并保存到文件第三行
             relations = three_relation_list(result)
-            outfile.write(str(relations) + '\n')
+            # 使用逗号连接所有关系并写入文件，同时添加外层的括号
+            outfile.write('[' + ','.join(relations) + ']' + '\n')
         else:
             print(f"Failed to process line {current_line_number}. Status code: {response.status_code}")
