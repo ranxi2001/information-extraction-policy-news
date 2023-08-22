@@ -18,8 +18,8 @@ def three_relation_list(algo_output):
     return relation_list
 
 # Step 1: 读取输入文件
-input_filename = "input.txt"
-output_filename = "output.txt"
+input_filename = "long_sentences.txt"
+output_filename = "long_output.txt"
 
 # Step 2: 对每一行文本发送HTTP请求到后端API
 with open(input_filename, 'r', encoding='utf-8') as infile:

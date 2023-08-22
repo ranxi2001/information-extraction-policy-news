@@ -1,5 +1,5 @@
 # 打开output.txt进行读取
-with open('output.txt', 'r', encoding='utf-8') as file:
+with open('long_output.txt', 'r', encoding='utf-8') as file:
     lines = file.readlines()
 
 # 提取每隔2行的实体信息
