@@ -25,7 +25,7 @@
 
 - [安装飞桨框架-源于产业实践的开源深度学习平台 (paddlepaddle.org.cn)](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/windows-pip.html)
 
-针对CUDA11.6我们第一步首先在终端运行以下代码：
+针对`CUDA 11.6`我们第一步首先在终端运行以下代码：
 
 ```
 pip install paddlepaddle-gpu==2.5.1.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
@@ -35,6 +35,11 @@ pip install paddlepaddle-gpu==2.5.1.post116 -f https://www.paddlepaddle.org.cn/w
 
 ```
 pip install paddlenlp -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+```
+
+以及安装Pytorch：
+```
+pip install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu116
 ```
 
 ## 项目架构
@@ -50,6 +55,14 @@ pip install paddlenlp -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host m
 	--data-preprocessed：多模态数据转化后的txt格式的数据集
 		--new-news：包含从wps、pdf和docx转换的txt文件
 		--new-policy：原本的txt文件，因为policy只有txt文件
+	--dataset-develop：用于开发更多功能的数据生成脚本
+	    --batch-result-api.py：在后端等待并直接输出算法结果的api，可以批量输出
+	    --batch-result-save.py：调用后端输出的api，批量输入txt获得算法结果
+	--mixed-filter：用于过滤输出结果，混合过滤器提升模型最终结果准确性
+	--presentation：交互式前端展示，html，api和css
+	    --back-end-api.py：后端api，先运行在888端口
+	    --presentation.html：前端展示实体识别和关系提取代码，可以调用后端api
+	--sentence-comletion：知识框架补全部分，实现句子补全
 	--uie-model：基于飞桨UIE模型的迁移微调信息抽取模型
 		--checkpoint：模型微调后模型保存到的目录
 			--model_best4000：最终提交的模型文件目录，包含12个模型文件
@@ -60,16 +73,10 @@ pip install paddlenlp -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host m
 		--tran.sh：将doccano_ext.json文件转换为train.txt、test.txt、name.txt、dev.txt
 		--model_evaluation：测试全部类型的实体与关系的准确率和召回率的脚本
 		--model_debug.sh：测试各个类型的实体和关系的精确率和召回率的脚本
-		--其余py文件：模型训练与测试等代码不用修改	
-	--dataset-develop:用于开发更多功能的数据生成脚本
-	    --batch-result-api.py：在后端等待并直接输出算法结果的api，可以批量输出
-	    --batch-result-save.py：调用后端输出的api，批量输入txt获得算法结果
-	--presentation:交互式前端展示，html，api和css
-	    --back-end-api.py：后端api，先运行在888端口
-	    --presentation.html：前端展示实体识别和关系提取代码，可以调用后端api	    
+		--其余py文件：模型训练与测试等代码不用修改    
 	--autoapi.py：在服务器上提供api，通过接口访问模型并返回预测结果的脚本
 	--localtest.py：在本地对事先输入的文本进行预测并返回预测结果的脚本
-	--requirements.txt:运行项目需要安装的Python库	
+	--requirements.txt：运行项目需要安装的Python库	
 ```
 
 ## 模型微调（训练）
