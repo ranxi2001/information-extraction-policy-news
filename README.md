@@ -15,13 +15,27 @@
 
 > 针对源代码的使用说明
 
+### 环境配置
+
+建议创建一个python3.8的虚拟环境，可能需要安装[Rust Compiler](https://blog.csdn.net/qq_42103091/article/details/123751444)
+
 首先需要安装CUDA和PaddlePaddle(飞桨)框架：
 
-[从零开始配置深度学习环境：CUDA+Anaconda+Pytorch+TensorFlow - 孤飞 - 博客园 (cnblogs.com)](https://www.cnblogs.com/ranxi169/p/17318803.html)
+- [从零开始配置深度学习环境：CUDA+Anaconda+Pytorch+TensorFlow - 孤飞 - 博客园 (cnblogs.com)](https://www.cnblogs.com/ranxi169/p/17318803.html)
 
-[安装飞桨框架-源于产业实践的开源深度学习平台 (paddlepaddle.org.cn)](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/windows-pip.html)
+- [安装飞桨框架-源于产业实践的开源深度学习平台 (paddlepaddle.org.cn)](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/windows-pip.html)
 
-其余库安装按照根目录`requirements.txt`安装即可。
+针对CUDA11.6我们第一步首先在终端运行以下代码：
+
+```
+pip install paddlepaddle-gpu==2.5.1.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+```
+
+然后安装PaddleNLP：
+
+```
+pip install paddlenlp -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+```
 
 ## 项目架构
 
