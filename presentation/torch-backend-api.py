@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
@@ -170,7 +170,9 @@ def return_result():
     text = request.json['text']
     input_sentence = text
     next_sentence = supplement(input_sentence)
-    return input_sentence + next_sentence
+    return jsonify({
+        'text': next_sentence,
+    })
 
 @app.route('/', methods=['POST'])
 def complet():
@@ -212,5 +214,5 @@ if __name__ == '__main__':
     model = Seq2Seq().to(device)
     criterion = nn.CrossEntropyLoss().to(device)
 
-    app.run(host='0.0.0.0', port=888)
+    app.run(host='0.0.0.0', port=999)
 

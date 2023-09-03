@@ -465,7 +465,6 @@
         }
         function paddle() {
             const text = document.getElementById('inputText').value;
-            console.log(text);
                 fetch('http://127.0.0.1:888', {
                     method: 'POST',
                     headers: {
@@ -487,7 +486,20 @@
         }
 
         function torch() {
-
+            const text = document.getElementById('inputText').value;
+                fetch('http://127.0.0.1:999', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: text })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    let cp = document.getElementById("text-completion-result");
+                    cp.innerHTML=text + '<span style="color: red;">' + data.text + '</span>';
+                    setSuccessStatus("completion");
+                });
         }
 
         function searchGraph(){
@@ -501,6 +513,7 @@
             setLoadingStatus("link");
             setLoadingStatus("gragh");
             paddle();
+            torch();
         }
     </script>
     <script>
