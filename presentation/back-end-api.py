@@ -26,7 +26,8 @@ def process_text():
                     'text':value['text'],
                     'start': value['start'],
                     'end': value['end'],
-                    'probability': value['probability']
+                    'probability': value['probability'],
+                    'hasRelati on': 1 if 'relations' in value else 0
                 })
                 if 'relations' in value:
                     for relation_type, related_entities in value['relations'].items():
@@ -39,6 +40,9 @@ def process_text():
                                 'targetText': related_entity['text'],
                                 'relation': relation_type
                             })
+    #按start值进行排序
+    nodes = sorted(nodes, key=lambda x: x['start'])
+    links = sorted(links, key=lambda x: x['source'])
     return jsonify({
         'nodes': nodes,
         'links': links
