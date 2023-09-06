@@ -65,4 +65,4 @@ def convert_to_doccano_format_v11(input_filename, output_filename):
 
 
 # Convert the file again with relations included and handling for missing entities
-convert_to_doccano_format_v11("outputtest.txt", "converted_outputtest_v11.jsonl")
+convert_to_doccano_format_v11("outputtest.txt", "converted_outputtest_v1.jsonl")

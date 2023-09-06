@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="format-detection" content="email=no" />
+    <meta name="wap-font-scale"  content="no" />
+    <meta name="viewport" content="user-scalable=no, width=device-width" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link href="https://src.axui.cn/v2.0/dist/css/ax.css" rel="stylesheet" type="text/css" >
+    <link href="https://src.axui.cn/v2.0/dist/css/ax-response.css" rel="stylesheet" type="text/css" >
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Knowledge Graph System</title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul class="mcd-menu">
+                <li>
+                    <a href="#" class="active">
+                        <i class="fa fa-text-width"></i>
+                        <strong>输入文本</strong>
+                        <small>输入您的文本</small>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-tags"></i>
+                        <strong>实体识别</strong>
+                        <small>识别文本中的实体</small>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-link"></i>
+                        <strong>关系抽取</strong>
+                        <small>提取实体间的关系</small>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-cube"></i>
+                        <strong>知识图谱</strong>
+                        <small>查看3D知识图谱</small>
+                    </a>
+                </li>
+            </ul>
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo" class="nav-logo">
+            </div>
+        </nav>
+
+    </div>
+
+    <div class="content-area">
+        <div id="input-text-content" class="content-section active">
+            <!-- 输入文本的内容 -->
+            <div class="ax-row">
+                <div class="ax-col ax-col-12">
+                    <section class="demo-section-border">
+                        <div class="ax-card" id="input-card">
+                            <div class="ax-card-header">
+                                输入文本
+                            </div>
+                            <div class="ax-card-body">
+                                <textarea id="inputText"></textarea>
+                                <div class="ax-break"></div>
+                                <a href="###" class="ax-btn ax-primary" onclick="process()" axRipple>确认</a>
+                            </div>
+                        </div>
+                    </section></div>
+                <span class="ax-gutter"></span>
+                <div class="ax-col ax-col-12">
+                    <section class="demo-section-border">
+                        <div class="ax-card" id="completion-card">
+                            <div class="ax-card-header">
+                                文本补全
+                            </div>
+                            <div class="ax-card-body">
+                                <div id="text-completion-result"></div>
+                            </div>
+                        </div>
+                    </section></div>
+            </div>
+
+            <div class="ax-break"></div>
+
+            <div class="ax-row">
+                <div class="ax-col ax-col-24">
+                    <section class="demo-section-border">
+                        <div class="ax-card" id="state-card">
+                            <div class="ax-card-header">
+                                模块功能状态
+                            </div>
+                            <div class="ax-card-body">
+                                <span class="ax-dot ax-dark default-status state-completion"></span>
+                                <span>文本补全：</span>
+                                <span>未运行</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="ax-dot ax-dark default-status state-entity"></span>
+                                <span>实体识别：</span>
+                                <span>未运行</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="ax-dot ax-dark default-status state-link"></span>
+                                <span>关系抽取：</span>
+                                <span>未运行</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="ax-dot ax-dark default-status state-gragh"></span>
+                                <span>知识图谱：</span>
+                                <span>未运行</span>
+                            </div>
+                        </div>
+                    </section></div>
+            </div>
+        </div>
+        <div id="entity-recognition-content" class="content-section">
+            <!-- 实体识别的内容 -->
+            <div class="ax-row">
+                <div class="ax-col ax-col-16">
+                    <section class="demo-section-border">
+                        <div class="ax-card" id="named-card">
+                            <div class="ax-card-header">
+                                实体识别结果
+                            </div>
+                            <div class="ax-card-body">
+                                <div id="entity-recognition-result"></div>
+                            </div>
+                        </div>
+                    </section></div>
+                <span class="ax-gutter"></span>
+                <div class="ax-col ax-col-8">
+                    <section class="demo-section-border">
+                        <div class="ax-card" id="unnamed-card">
+                            <div class="ax-card-header">
+                                潜在实体识别结果
+                            </div>
+                            <div class="ax-card-body">
+                                <div id="entity-recognition-result-unnamed"></div>
+                            </div>
+                        </div>
+                    </section></div>
+            </div>
+        </div>
+        <div id="relationship-extraction-content" class="content-section">
+            <!-- 关系抽取的内容 -->
+            <div class="ax-row">
+                <div class="ax-col ax-col-7">
+                    <section class="demo-section-border">
+                        <div class="ax-card" id="link-card">
+                            <div class="ax-card-header">
+                                正向关系
+                            </div>
+                            <div class="ax-card-body">
+                                <div id="link-result"></div>
+                            </div>
+                        </div>
+                    </section></div>
+                <span class="ax-gutter"></span>
+                <div class="ax-col ax-col-7">
+                    <section class="demo-section-border">
+                        <div class="ax-card" id="reverse-card">
+                            <div class="ax-card-header">
+                                反向关系
+                            </div>
+                            <div class="ax-card-body">
+                                <div id="reverse-result"></div>
+                            </div>
+                        </div>
+                    </section></div>
+                <span class="ax-gutter"></span>
+                <div class="ax-col ax-col-10">
+                    <section class="demo-section-border">
+                        <div class="ax-card" id="extend-card">
+                            <div class="ax-card-header">
+                                路径推理关系
+                            </div>
+                            <div class="ax-card-body">
+                                <div id="extend-result"></div>
+                            </div>
+                        </div>
+                    </section></div>
+            </div>
+        </div>
+        <div id="3d-graph-content" class="content-section">
+            <!-- 3D图谱的内容 -->
+            <div class="ax-row">
+                <div class="ax-col ax-col-22">
+                    <input type="text" id="graph-search-input" placeholder="搜索实体或关系...">
+                </div>
+                <span class="ax-gutter"></span>
+                <div class="ax-col ax-col-2">
+                    <a href="###" class="ax-btn ax-line ax-primary ax-icon" onclick="searchGraph()"><span class="ax-iconfont ax-icon-search"></span></a>
+                    <!-- <a href="###" class="ax-btn ax-ad" onclick="searchGraph()" axRipple>搜索</a> -->
+                    <a href="###" class="ax-btn ax-line ax-primary ax-icon" onclick="reset()"><span class="ax-iconfont ax-icon-refresh"></span></a>
+                </div>
+
+
+            </div>
+
+            <div class="ax-break"></div>
+
+            <div class="ax-row">
+                <div class="ax-col ax-col-24">
+                    <div id="graph-result"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/3d-force-graph"></script>
+    <script src="https://src.axui.cn/v2.0/dist/js/ax.min.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        let G_graghdata = null;
+        let G_displaygraph = null;
+
+        // 修改为默认状态
+        function setDefaultStatus(taskName) {
+            $(`.state-${taskName}`).removeClass("ax-ad ax-success").addClass("ax-dark");
+            $(`.state-${taskName}`).next().next().text("未加载");
+        }
+
+        // 修改为加载状态
+        function setLoadingStatus(taskName) {
+            $(`.state-${taskName}`).removeClass("ax-dark ax-success").addClass("ax-ad");
+            $(`.state-${taskName}`).next().next().text("正在加载...");
+        }
+
+        // 修改为成功状态
+        function setSuccessStatus(taskName) {
+            $(`.state-${taskName}`).removeClass("ax-dark ax-ad").addClass("ax-success");
+            $(`.state-${taskName}`).next().next().text("加载完成");
+        }
+        class searchTOOL{
+            constructor (container_) {
+                this.container = document.getElementById(container_);
+            }
+            updateGraphData(data) {
+                G_displaygraph.render(data);
+            }
+            search() {
+                const searchTerm = document.getElementById('graph-search-input').value.toLowerCase();
+                if (!searchTerm) return;
+                // 搜索实体和关系
+                console.log("搜索实体和关系");
+                const matchedNodes = G_graghdata.nodes.filter(node =>
+                    node.text.toLowerCase().includes(searchTerm) ||
+                    node.label.toLowerCase().includes(searchTerm)
+                );
+                console.log("matchedNodes");
+                const matchedLinks = G_graghdata.links.filter(link =>
+                    link.sourceText.toLowerCase().includes(searchTerm) ||
+                    link.targetText.toLowerCase().includes(searchTerm) ||
+                    link.relation.toLowerCase().includes(searchTerm)
+                );
+                console.log("matchedLinks");
+                // 更新图谱数据以只显示匹配的实体和关系
+                console.log("更新图谱数据以只显示匹配的实体和关系");
+                this.updateGraphData({nodes : matchedNodes , links : matchedLinks});
+            }
+        }
+        class displayENT {
+            constructor (container_) {
+                this.container = document.getElementById(container_);
+            }
+            render(text, nodes, links, ents) {
+                this.container.innerHTML = '';
+                let offset = 0;
+                nodes.forEach(({ label, start, end , hasRelation}) => {
+                    const entity = text.slice(start, end);
+                    const fragments = text.slice(offset, start).split('\n');
+                    fragments.forEach((fragment, i) => {
+
+                        this.container.appendChild(document.createTextNode(fragment));
+                        if(fragments.length > 1 && i != fragments.length - 1) this.container.appendChild(document.createElement('br'));
+                    });
+                    if(ents.includes(label.toLowerCase())) {
+                        const mark = document.createElement('mark');
+                        mark.setAttribute('data-entity', label.toLowerCase());
+                        mark.appendChild(document.createTextNode(entity));
+                        this.container.appendChild(mark);
+                    }
+                    else {
+                        this.container.appendChild(document.createTextNode(entity));
+                    }
+                    offset = end;
+                });
+                this.container.appendChild(document.createTextNode(text.slice(offset, text.length)));
+                //console.log(`%c💥  HTML markup\n%c<div class="entities">${this.container.innerHTML}</div>`, 'font: bold 16px/2 arial, sans-serif', 'font: 13px/1.5 Consolas, "Andale Mono", Menlo, Monaco, Courier, monospace');
+                if(typeof this.onRender === 'function') this.onRender();
+            }
+        }
+        class displayLINK{
+            constructor(container1_,container2_){
+                this.container1 = container1_;
+                this.container2 = container2_;
+                this.relationshipMapping = {
+                "发言人": "被...发言",
+                "开会地点": "举办...的地点",
+                "发布内容": "被...发布的内容",
+                "身份": "的身份",
+                "隶属": "有...的成员",
+                "针对群体": "是...针对的群体",
+                "发布单位": "发布...的单位"
+                };
+            }
+            render(links){
+                var arr = ["实体A","关系","实体B"];
+                //创建数组arr，用来显示th的标题
+                var body = document.getElementById(this.container1);
+                body.innerHTML = '';
+                //查找body结点
+                var table = document.createElement("table");
+                table.className = "ax-table";
+                table.setAttribute("stripe", "odd");
+                //创建table结点
+                body.appendChild(table);
+                //向body中添加table节点
+                var thead = document.createElement("thead");
+                //创建thead节点
+                table.appendChild(thead);
+                //把thead节点添加到table节点
+                var trd = document.createElement("tr");
+                //创建tr节点
+                thead.appendChild(trd);
+                //向thead中添加tr节点
+                for(let i = 0;i<arr.length;i++){    //遍历arr数组，通过数组下标获取数组中的元素
+                    var th = document.createElement("th");
+                    //创建th节点
+                    trd.appendChild(th);
+                    //向tr节点中添加th节点
+                    var text = document.createTextNode(arr[i]);
+                    //创建文本节点
+                    th.appendChild(text);
+                    //把文本节点添加到th节点中
+                }
+                var tbody = document.createElement("tbody");
+                //创建tbody节点
+                table.appendChild(tbody);
+                //把tbody节点添加到table节点中
+                links.forEach(({ sourceText, relation, targetText}) => {
+                    var tr = document.createElement("tr");
+                    //创建tr节点
+                    tbody.appendChild(tr);
+
+                    var td1 = document.createElement("td");
+                    //创建td节点
+                    tr.appendChild(td1);
+                    //把td节点添加tr节点中
+                    var text = document.createTextNode(sourceText);
+                    //创建文本节点
+                    td1.appendChild(text);
+
+                    var td2 = document.createElement("td");
+                    //创建td节点
+                    tr.appendChild(td2);
+                    //把td节点添加tr节点中
+                    var text = document.createTextNode(relation);
+                    //创建文本节点
+                    td2.appendChild(text);
+
+                    var td3 = document.createElement("td");
+                    //创建td节点
+                    tr.appendChild(td3);
+                    //把td节点添加tr节点中
+                    var text = document.createTextNode(targetText);
+                    //创建文本节点
+                    td3.appendChild(text);
+
+                });
+
+
+                 //创建数组arr，用来显示th的标题
+                var body = document.getElementById(this.container2);
+                body.innerHTML = '';
+                //查找body结点
+                var table = document.createElement("table");
+                table.className = "ax-table";
+                table.setAttribute("stripe", "odd");
+                //创建table结点
+                body.appendChild(table);
+                //向body中添加table节点
+                var thead = document.createElement("thead");
+                //创建thead节点
+                table.appendChild(thead);
+                //把thead节点添加到table节点
+                var trd = document.createElement("tr");
+                //创建tr节点
+                thead.appendChild(trd);
+                //向thead中添加tr节点
+                for(let i = 0;i<arr.length;i++){    //遍历arr数组，通过数组下标获取数组中的元素
+                    var th = document.createElement("th");
+                    //创建th节点
+                    trd.appendChild(th);
+                    //向tr节点中添加th节点
+                    var text = document.createTextNode(arr[i]);
+                    //创建文本节点
+                    th.appendChild(text);
+                    //把文本节点添加到th节点中
+                }
+                var tbody = document.createElement("tbody");
+                //创建tbody节点
+                table.appendChild(tbody);
+                //把tbody节点添加到table节点中
+                links.forEach(({ sourceText, relation, targetText}) => {
+                    var tr = document.createElement("tr");
+                    //创建tr节点
+                    tbody.appendChild(tr);
+
+                    var td1 = document.createElement("td");
+                    //创建td节点
+                    tr.appendChild(td1);
+                    //把td节点添加tr节点中
+                    var text = document.createTextNode(sourceText);
+                    //创建文本节点
+                    td1.appendChild(text);
+
+                    var td2 = document.createElement("td");
+                    //创建td节点
+                    tr.appendChild(td2);
+                    //把td节点添加tr节点中
+                    var text = document.createTextNode(this.relationshipMapping[relation]);
+                    //创建文本节点
+                    td2.appendChild(text);
+
+                    var td3 = document.createElement("td");
+                    //创建td节点
+                    tr.appendChild(td3);
+                    //把td节点添加tr节点中
+                    var text = document.createTextNode(targetText);
+                    //创建文本节点
+                    td3.appendChild(text);
+
+                });
+            }
+        }
+        class displayGRAPH{
+            constructor (container_) {
+                this.container = document.getElementById(container_);
+            }
+            render(data){
+                const Graph = ForceGraph3D()(this.container);
+                Graph.graphData(data)
+                .nodeAutoColorBy('label')
+                .nodeLabel(node => `NodeID: ${node.start}<br>Text: ${node.text}<br>Label: ${node.label}<br>Probability: ${node.probability}`)
+                .linkLabel(link => `Relation: ${link.relation}<br>Source: ${link.sourceText}<br>Target: ${link.targetText}`)
+                .linkAutoColorBy(link => link.sourceLabel)
+                .linkOpacity(0.5)
+                .width(1500)  // 设置宽度
+                .height(725)  // 设置高度
+                .onEngineStop(() => Graph.zoomToFit(400));
+            }
+        }
+        function paddle() {
+            const text = document.getElementById('inputText').value;
+                fetch('http://127.0.0.1:888', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: text })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    G_graghdata = data;
+                    const displayent = new displayENT('entity-recognition-result');
+                    displayent.render(text, data.nodes, data.links, data.nodes.map(e => e.label));
+                    setSuccessStatus("entity");
+                    const displaylink = new displayLINK('link-result','reverse-result');
+                    displaylink.render(data.links);
+                    setSuccessStatus("link");
+                    setSuccessStatus("gragh");
+                });
+        }
+
+        function torch() {
+            const text = document.getElementById('inputText').value;
+                fetch('http://127.0.0.1:999', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: text })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    let cp = document.getElementById("text-completion-result");
+                    cp.innerHTML=text + '<span style="color: red;">' + data.text + '</span>';
+                    setSuccessStatus("completion");
+                });
+        }
+
+        function searchGraph(){
+            let searchtool = new searchTOOL('graph-result');
+            searchtool.search();
+        }
+
+        function process() {
+            setLoadingStatus("completion");
+            setLoadingStatus("entity");
+            setLoadingStatus("link");
+            setLoadingStatus("gragh");
+            paddle();
+            torch();
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".mcd-menu li a").click(function(e) {
+                e.preventDefault(); // 阻止默认的链接点击行为
+                // 移除所有模块的active类
+                $(".mcd-menu li a").removeClass("active");
+                // 为点击的模块添加active类
+                $(this).addClass("active");
+
+                // 隐藏所有内容区域
+                $(".content-section").removeClass("active");
+
+                // 根据点击的模块显示对应的内容区域
+                if ($(this).find("strong").text() === "输入文本") {
+                    $("#input-text-content").addClass("active");
+                } else if ($(this).find("strong").text() === "实体识别") {
+                    $("#entity-recognition-content").addClass("active");
+                } else if ($(this).find("strong").text() === "关系抽取") {
+                    $("#relationship-extraction-content").addClass("active");
+                } else if ($(this).find("strong").text() === "知识图谱") {
+                    $("#3d-graph-content").addClass("active");
+                    G_displaygraph = new displayGRAPH('graph-result');
+                    G_displaygraph.render(G_graghdata);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
