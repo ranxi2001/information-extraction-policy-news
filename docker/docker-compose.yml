@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  backend-api:
+  paddle-backend-api:
     build:
       context: .
       dockerfile: Dockerfile1

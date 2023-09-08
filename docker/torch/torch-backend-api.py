@@ -110,7 +110,7 @@ class TranslateDataSet(Data.Dataset):
     def __getitem__(self, idx):
         return self.enc_input_all[idx], self.dec_input_all[idx], self.dec_output_all[idx]
 def supplement(word):
-    model.load_state_dict(torch.load('best_model.pth'))
+    model.load_state_dict(torch.load('/app/best_model.pth'))
     model.eval()
 
     input_tokens = list(jieba.cut(word, cut_all=False))
@@ -182,7 +182,7 @@ def complet():
 if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    file_path = 'truncated_setence.json'
+    file_path = '/app/truncated_setence.json'
     with open(file_path, 'r', encoding='utf-8') as file:
         sentence_data = json.load(file)
 
@@ -193,7 +193,7 @@ if __name__ == '__main__':
         supplement_sentence.append(item["supplement_sentence"])
 
     seq_date = [[a, b] for a, b in zip(truncated_sentence, supplement_sentence)]
-    jieba.load_userdict("userdict.txt")
+    jieba.load_userdict("/app/userdict.txt")
     segmented_setence = seg_text(seq_date)
 
     tokens = tokenize(segmented_setence)
