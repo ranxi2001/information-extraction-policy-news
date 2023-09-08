@@ -32,3 +32,4 @@ uie-model/checkpoint/model_best3800/.cache_info
 /uie-model/checkpoint/model_best/
 /uie-model/checkpoint/
 /uie-model/$finetuned_model/
+/docker/paddle/model_best4000/
