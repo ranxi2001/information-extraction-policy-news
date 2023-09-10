@@ -1,2 +1,5 @@
 docker buildx build --platform linux/arm64 -t onefly/torch-backend-api:arm64 . --push -f Dockerfile2
-docker buildx build --platform linux/arm64 -t onefly/paddle-backend-api:arm64 .  -f Dockerfile1
+docker build  -t onefly/paddle-backend-api:arm64 .  -f Dockerfile1
+docker run -p 999:999 onefly/torch-backend-api:arm64
+#持久化运行
+docker run -d -p 999:999 onefly/torch-backend-api:arm64

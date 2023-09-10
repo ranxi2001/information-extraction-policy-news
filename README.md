@@ -89,9 +89,9 @@ pip install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1 --e
 
 ### 整体模型性能测试
 
-运行`model_evaluation.sh`，就可以开始测试整个模型的精确率，召回率了，本模型的F1score能够达到96%，满足题目要求。
+运行`model_evaluation.sh`，就可以开始测试整个模型的精确率、召回率了，本模型的F1score能够达到97%，**三项指标性能均超过95%**满足题目要求。
 
-![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/all-test.jpg)
+![](https://img2023.cnblogs.com/blog/2910984/202309/2910984-20230910153322062-1968848819.png)
 
 ### 各类实体和关系性能测试
 
