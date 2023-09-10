@@ -34,3 +34,9 @@ uie-model/checkpoint/model_best3800/.cache_info
 /uie-model/$finetuned_model/
 /docker/paddle/model_best4000/
 /pytorch/checkpoint/
+/uie-pytorch/checkpoint/model-best-4000-paddle/
+/uie-pytorch/checkpoint/model-best-4000-torch/
+/uie-pytorch/checkpoint/uie-base-paddle/
+/uie-pytorch/checkpoint/uie-base-pytorch/
+/docker/uie/export/
+/uie-pytorch/export/

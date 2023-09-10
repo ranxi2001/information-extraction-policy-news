@@ -1,0 +1,11 @@
+Jinja2
+setuptools
+colorlog
+colorama
+flask
+flask_cors
+six
+tqdm
+transformers
+onnx
+onnxruntime

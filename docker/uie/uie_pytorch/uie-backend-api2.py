@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
-from paddlenlp import Taskflow
+#coding=utf-8
+from pprint import pprint
 from flask_cors import CORS
-
+from uie_predictor import UIEPredictor
 app = Flask(__name__)
 CORS(app)
 # 在这里定义你想要识别的实体类型
@@ -10,7 +11,7 @@ schema = [{"人名": "身份"},{'人的代称':"隶属"},{'政策':"发布单位
           '政府机构', '省份','城市地点','组织机构企业','新闻杂志融媒体','国家']
 
 # 设定抽取目标和定制化模型权重路径
-my_ie = Taskflow("information_extraction", schema=schema, task_path='/app/model_best4000')
+my_ie = UIEPredictor(model='uie-base', task_path='../../model-best-4000-torch', schema=schema, max_seq_len=512, device='cpu')
 
 @app.route('/', methods=['POST'])
 def process_text():
@@ -27,7 +28,7 @@ def process_text():
                     'text':value['text'],
                     'start': value['start'],
                     'end': value['end'],
-                    'probability': value['probability'],
+                    'probability': float(value['probability']),
                     'hasRelati on': 1 if 'relations' in value else 0
                 })
                 if 'relations' in value:

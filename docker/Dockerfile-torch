@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV FLASK_APP=torch-backend-api.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
-# 暴露端口 9999
+# 暴露端口 999
 EXPOSE 999
 
 # 运行 Flask 应用
