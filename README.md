@@ -31,15 +31,21 @@
 pip install paddlepaddle-gpu==2.5.1.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
 ```
 
-然后安装PaddleNLP：
+然后安装`PaddleNLP`：
 
 ```
 pip install paddlenlp -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 ```
 
-以及安装Pytorch：
+以及安装`Pytorch`：
 ```
 pip install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu116
+```
+
+安装`transformers`：
+
+```
+pip install transformers -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 ```
 
 ## 项目架构
@@ -99,11 +105,11 @@ pip install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1 --e
 
 **实体识别**精确率、召回率、F1-Score均高于95%.
 
-![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/20230601223054.png)
+![](https://img2023.cnblogs.com/blog/2910984/202309/2910984-20230910160203494-1009498607.png)
 
 **关系提取**准确率（指F1Score）仅有1/7个(政策的针对地区)低于95%，其余均高于95%
 
-![](https://cdn.jsdelivr.net/gh/ranxi2001/blog-imgs@main/img/20230601223434.png)
+![](https://img2023.cnblogs.com/blog/2910984/202309/2910984-20230910160310579-1681456409.png)
 
 ## 参数调整
 
