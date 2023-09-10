@@ -95,9 +95,9 @@ pip install transformers -i http://mirrors.aliyun.com/pypi/simple/ --trusted-hos
 
 ### 整体模型性能测试
 
-运行`model_evaluation.sh`，就可以开始测试整个模型的精确率、召回率了，本模型的F1score能够达到97%，**三项指标性能均超过95%**满足题目要求。
+运行`model_evaluation.sh`，就可以开始测试整个模型的精确率、召回率了，本模型的`F1-Score`能够达到97%，**三项指标性能均超过95%**满足题目要求。
 
-![](https://img2023.cnblogs.com/blog/2910984/202309/2910984-20230910153322062-1968848819.png)
+![](https://img2023.cnblogs.com/blog/2910984/202309/2910984-20230910161328413-1750778830.png)
 
 ### 各类实体和关系性能测试
 
