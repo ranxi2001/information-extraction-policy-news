@@ -8,7 +8,7 @@
 
 > [KumaTea/pytorch-aarch64: PyTorch wheels (whl) & conda for aarch64 / ARMv8 / ARM64 (github.com)](https://github.com/KumaTea/pytorch-aarch64)
 
-组委会提供的服务器VPS的Linux系统是`Kylin serve V10`，CPU应当是鲲鹏系列，架构是`aarch64`（`armv8`）,本次揭榜挂帅有一个评分指标是**国产化环境适配**，要求在国产CPU和操作系统、国产图数据库上，功能稳定运行。
+组委会提供的服务器VPS的Linux系统是`Kylin serve V10`，CPU是国产飞腾系列，架构是`aarch64`（`armv8`）,本次揭榜挂帅有一个评分指标是**国产化环境适配**，要求在国产CPU和操作系统、国产图数据库上，功能稳定运行。
 
 ```sh
 [root@ncjnwrb21cb7q6 ~]# cat /etc/os-release
