@@ -13,7 +13,7 @@ COPY ./torch /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 设置 Flask 环境变量
-ENV FLASK_APP=torch-backend-api.py
+ENV FLASK_APP=/app/torch-backend-api.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 # 暴露端口 999
