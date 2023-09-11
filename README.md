@@ -97,7 +97,7 @@ pip install transformers -i http://mirrors.aliyun.com/pypi/simple/ --trusted-hos
 
 运行`model_evaluation.sh`，就可以开始测试整个模型的精确率、召回率了，本模型的`F1-Score`能够达到97%，**三项指标性能均超过95%**满足题目要求。
 
-![](https://img2023.cnblogs.com/blog/2910984/202309/2910984-20230910161328413-1750778830.png)
+![](https://raw.githubusercontent.com/ranxi2001/blog-imgs/main/img/20230911212055.png)
 
 ### 各类实体和关系性能测试
 
@@ -105,11 +105,11 @@ pip install transformers -i http://mirrors.aliyun.com/pypi/simple/ --trusted-hos
 
 **实体识别**精确率、召回率、F1-Score均高于95%.
 
-![](https://img2023.cnblogs.com/blog/2910984/202309/2910984-20230910160203494-1009498607.png)
+![](https://raw.githubusercontent.com/ranxi2001/blog-imgs/main/img/指标1.png)
 
 **关系提取**准确率（指F1Score）仅有1/7个(政策的针对地区)低于95%，其余均高于95%
 
-![](https://img2023.cnblogs.com/blog/2910984/202309/2910984-20230910160310579-1681456409.png)
+![](https://raw.githubusercontent.com/ranxi2001/blog-imgs/main/img/指标2.png)
 
 ## 参数调整
 
