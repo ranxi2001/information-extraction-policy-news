@@ -5,3 +5,12 @@ pypinyin~=0.49.0
 torch==1.13.1
 torchvision==0.14.1
 torchaudio==0.13.1
+colorlog
+colorama
+flask
+flask_cors
+six
+tqdm
+transformers
+onnx
+onnxruntime
