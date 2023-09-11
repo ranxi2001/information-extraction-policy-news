@@ -1,0 +1,353 @@
+body { 
+	background: #EEE; 
+	overflow-x:hidden;
+}
+#input-card, #completion-card {
+    min-height: 675px; 
+    overflow: auto;
+}
+#state-card {
+    height: 88px; 
+}
+#inputText {
+    min-height: 550px; 
+}
+#named-card, #unnamed-card, #link-card, #reverse-card, #extend-card {
+    min-height: 780px; 
+}
+
+#graph-result {
+    width: 1500px;
+    height: 700px;
+}
+
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    z-index: 1; /* 设置导航栏的z-index值 */
+}
+
+/* Content Area Styles */
+.content-area {
+    z-index: 2; /* 设置内容区域的z-index值，确保它高于导航栏 */
+    position: relative; /* 为了使z-index生效，需要设置position属性 */
+    margin-left: 160px; /* 导航栏的宽度 */
+    padding: 15px;
+    background-color: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 96vh;
+    transition: all 0.3s ease-in-out;
+}
+
+.content-section {
+    display: none; /* 默认隐藏所有内容区域 */
+}
+
+.content-section.active {
+    display: block; /* 显示活动的内容区域 */
+}
+
+
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 1210px;
+    }
+}
+
+@media only screen and (min-width: 960px) and (max-width: 1199px) {
+    .container {
+        width: 1030px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    .container {
+        width: 682px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .container {
+        width: 428px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .container {
+        width: 320px;
+        margin: 0 auto;
+    }
+}
+
+nav {
+    position: relative; /* 让内部的绝对定位元素相对于这个 nav 定位 */
+    background: #FFF;
+    height: 100vh;
+}
+
+.logo-container {
+    position: absolute;
+    bottom: 0;
+    width: 150px;
+    text-align: center;
+    padding: 10px 0; /* 根据需要调整 padding */
+    z-index: 1000; /* 一个较高的 z-index 值 */
+}
+
+.nav-logo {
+    max-width: 100%;
+    max-height: 100px; /* 或其他合适的高度 */
+    display: block;
+    margin: 0 auto; /* 让 logo 在其容器中居中 */
+}
+
+
+.mcd-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 4px; /* 添加左边距 */
+    background: #FFF;
+    border-radius: 2px;
+    width: 150px;
+}
+
+.mcd-menu li {
+    position: relative;
+    margin-bottom: 10px; /* 调整为您需要的值 */
+}
+
+.mcd-menu li a {
+    display: block;
+    text-decoration: none;
+    padding: 12px 20px;
+    color: #777;
+    text-align: left;
+    height: 36px;
+    position: relative;
+    border-bottom: 1px solid #EEE;
+}
+
+.mcd-menu li a i {
+    float: left;
+    font-size: 20px;
+    margin: 0 10px 0 0;
+}
+
+.mcd-menu li a p {
+    float: left;
+    margin: 0;
+}
+
+.mcd-menu li a strong {
+    display: block;
+    text-transform: uppercase;
+}
+
+.mcd-menu li a small {
+    display: block;
+    font-size: 10px;
+}
+
+.mcd-menu li a i, .mcd-menu li a strong, .mcd-menu li a small {
+    position: relative;
+    transition: all 300ms linear;
+}
+
+.mcd-menu li:hover > a i {
+    opacity: 1;
+    animation: moveFromTop 300ms ease-in-out;
+}
+
+.mcd-menu li:hover a strong {
+    opacity: 1;
+    animation: moveFromLeft 300ms ease-in-out;
+}
+
+.mcd-menu li:hover a small {
+    opacity: 1;
+    animation: moveFromRight 300ms ease-in-out;
+}
+
+.mcd-menu li:hover > a {
+    color: #278be3;
+}
+
+.mcd-menu li a.active {
+    position: relative;
+    color: #278be3;
+    border: 0;
+    box-shadow: 0 0 5px #DDD;
+    border-left: 4px solid #278be3;
+    border-right: 4px solid #278be3;
+    margin: 0 -4px;
+}
+
+.mcd-menu li a.active:before {
+    content: "";
+    position: absolute;
+    top: 42%;
+    left: 0;
+    border-left: 5px solid #278be3;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+.mcd-menu li a.active:after {
+    content: "";
+    position: absolute;
+    top: 42%;
+    right: 0;
+    border-right: 5px solid #278be3;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+/* 基础样式 */
+.ax-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 2px;
+    vertical-align: middle;
+}
+
+/* 默认状态：黑色小点 + 文本 */
+.default-status .ax-dot.ax-dark {
+    background-color: black;
+}
+
+.default-status + span {
+    color:rgb(97, 95, 92);
+    font-weight: bold;
+}
+
+/* 加载状态：橙色小点 + 文本 */
+.loading-status .ax-dot.ax-ad {
+    background-color: orange;
+}
+
+.loading-status + span {
+    color: rgb(97, 95, 92);
+    font-weight: bold;
+}
+
+/* 成功状态：绿色小点 + 文本 */
+.success-status .ax-dot.ax-success {
+    background-color: green;
+}
+
+.success-status + span {
+    color: rgb(97, 95, 92);
+    font-weight: bold;
+}
+
+[data-entity] {
+    line-height: 2;
+    font-weight: bold;
+    border-bottom: 2px dashed;
+    background: transparent;
+    border-left: 2px dashed;
+    padding-left: 0.35em;
+    border-bottom-left-radius: 5px;
+}
+
+[data-entity]:after {
+    padding: 0.5em 0.5em;
+    content: attr(data-entity);
+    margin-left: 0.75em;
+    font-size: 0.65em;
+    text-transform: uppercase;
+    color: #fff;
+    background: transparent;
+    position: relative;
+    bottom: -2px;
+    vertical-align: middle;
+    border-top-right-radius: 5px;
+}
+
+    /* 实体颜色定义 */
+    [data-entity="政策"] { border-color: #FFDAB9; }
+    [data-entity="政策"]:after {background: #FFDAB9; }
+    [data-entity="政府机构"] { border-color: #FFB6C1; }
+    [data-entity="政府机构"]:after {background: #FFB6C1; }
+    [data-entity="省份"] { border-color: #FFA07A; }
+    [data-entity="省份"]:after {background: #FFA07A; }
+    [data-entity="城市地点"] { border-color: #98FB98; }
+    [data-entity="城市地点"]:after {background: #98FB98; }
+    [data-entity="人名"] { border-color: #ADD8E6; }
+    [data-entity="人名"]:after {background: #ADD8E6; }
+    [data-entity="人的代称"] { border-color: #F0E68C; }
+    [data-entity="人的代称"]:after {background: #F0E68C; }
+    [data-entity="事件工程项目"] { border-color: #E6E6FA; }
+    [data-entity="事件工程项目"]:after {background: #E6E6FA; }
+    [data-entity="会议"] { border-color: #D3D3D3; }
+    [data-entity="会议"]:after {background: #D3D3D3; }
+    [data-entity="法规条例"] { border-color: #FFC0CB; }
+    [data-entity="法规条例"]:after {background: #FFC0CB; }
+    [data-entity="组织机构企业"] { border-color: #B0E0E6; }
+    [data-entity="组织机构企业"]:after {background: #B0E0E6; }
+    [data-entity="新闻杂志融媒体"] { border-color: #FFB6C1; }
+    [data-entity="新闻杂志融媒体"]:after {background: #FFB6C1; }
+    [data-entity="国家"] { border-color: #FFDEAD; }
+    [data-entity="国家"]:after {background: #FFDEAD; }
+    .entities {
+    font: 18px/2.5 Arial, sans-serif;
+    padding: 25px 50px;
+    }
+
+
+@keyframes moveFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(200%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@keyframes moveFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(200%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes moveFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(-200%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
