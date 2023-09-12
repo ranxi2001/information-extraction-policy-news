@@ -48,6 +48,8 @@ pip install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1 --e
 pip install transformers -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 ```
 
+其余依赖按照[requirements.txt](./requirements.txt)安装即可。
+
 ## 项目架构
 
 ```
@@ -64,6 +66,9 @@ pip install transformers -i http://mirrors.aliyun.com/pypi/simple/ --trusted-hos
 	--dataset-develop：用于开发更多功能的数据生成脚本
 	    --batch-result-api.py：在后端等待并直接输出算法结果的api，可以批量输出
 	    --batch-result-save.py：调用后端输出的api，批量输入txt获得算法结果
+	--docker:用于构建docker镜像的工作目录
+		--torch：语句补全的docker镜像源码
+	    --uie：实体识别和关系抽取的docker镜像源码
 	--mixed-filter：用于过滤输出结果，混合过滤器提升模型最终结果准确性
 	--presentation：交互式前端展示，html，api和css
 	    --back-end-api.py：后端api，先运行在888端口
@@ -79,7 +84,10 @@ pip install transformers -i http://mirrors.aliyun.com/pypi/simple/ --trusted-hos
 		--tran.sh：将doccano_ext.json文件转换为train.txt、test.txt、name.txt、dev.txt
 		--model_evaluation：测试全部类型的实体与关系的准确率和召回率的脚本
 		--model_debug.sh：测试各个类型的实体和关系的精确率和召回率的脚本
-		--其余py文件：模型训练与测试等代码不用修改    
+		--其余py文件：模型训练与测试等代码不用修改
+	--uie-pytorch:由飞桨版本UIE重构的Pytorch版本模型
+		--convert.sh：将uie paddle模型转换为pytorch动态图模型
+		--export.sh：将pytorch动态图模型转换为onnx静态图模型
 	--autoapi.py：在服务器上提供api，通过接口访问模型并返回预测结果的脚本
 	--localtest.py：在本地对事先输入的文本进行预测并返回预测结果的脚本
 	--requirements.txt：运行项目需要安装的Python库	

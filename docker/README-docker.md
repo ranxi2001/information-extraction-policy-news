@@ -114,11 +114,11 @@ docker run -p 888:888 onefly/uie-backend-api:arm64
 通过`Postman`等api调试工具验证无误后即可在后台运行,添加参数`-d`：
 
 ```
-docker run -d -p 888:888 onefly/uie-backend-api:latest
+docker run -p 888:888 onefly/uie-backend-api:latest
 ```
 
 ```
-docker run -d -p 999:999 onefly/torch-backend-api:arm64
+docker run -p 999:999 onefly/torch-backend-api:arm64
 ```
 
 大功告成！
