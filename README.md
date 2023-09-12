@@ -91,6 +91,19 @@ pip install transformers -i http://mirrors.aliyun.com/pypi/simple/ --trusted-hos
 2. 运行`tran.sh`，就会将从doccano导出的标注数据转化为模型的输入数据和测试数据
 3. 运行`train.sh`，就可以开始训练`uie-base`模型，训练结束后会保存模型到checkpoint目录下的model_best路径下,`train.sh`可以根据自己的需求修改参数。
 
+## 模型下载（paddle与torch模型）
+
+由于github等版本控制工具仓库有大文件限制，且模型文件通过git传输较慢，故将模型上传至百度网盘。提供了直接拷贝整个项目之外的快速传输方案。
+
+将下载的压缩包解压后复制当前目录不存在的模型目录即可。
+
+文件：`model-best4000.rar` 、 `uie-pytorch.rar` 、 `docker.rar`
+
+```
+链接：https://pan.baidu.com/s/1CLdcpnjK2CEDh0tZvZV6RA?pwd=czci 
+提取码：czci 
+```
+
 ## 模型测试
 
 ### 整体模型性能测试
