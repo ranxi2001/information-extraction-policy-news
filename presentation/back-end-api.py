@@ -16,34 +16,47 @@ my_ie = Taskflow("information_extraction", schema=schema, task_path='../uie-mode
 def process_text():
     text = request.json['text']
     results = my_ie(text)
+
     nodes = []
     links = []
-    for result in results:  # 遍历列表中的每个字典
-        for key, values in result.items():  # 在每个字典上调用items()
+    node_ids = set()  # 用于存储节点ID，以检查是否有重复的节点
+    link_sources_targets = set()  # 用于存储链接的source-target组合，以检查是否有重复的链接
+
+    for result in results:
+        for key, values in result.items():
             for value in values:
-                nodes.append({
-                    'id': value['start'],
-                    'label': key,
-                    'text':value['text'],
-                    'start': value['start'],
-                    'end': value['end'],
-                    'probability': value['probability'],
-                    'hasRelati on': 1 if 'relations' in value else 0
-                })
+                node_id = value['start']
+                if node_id not in node_ids:  # 检查该节点ID是否已经存在
+                    nodes.append({
+                        'id': node_id,
+                        'label': key,
+                        'text': value['text'],
+                        'start': value['start'],
+                        'end': value['end'],
+                        'probability': value['probability'],
+                        'hasRelation': 1 if 'relations' in value else 0
+                    })
+                    node_ids.add(node_id)  # 将新节点ID添加到集合中
+
                 if 'relations' in value:
                     for relation_type, related_entities in value['relations'].items():
                         for related_entity in related_entities:
-                            links.append({
-                                'source': value['start'],
-                                'target': related_entity['start'],
-                                'sourceText': value['text'],
-                                'sourceLabel': key,
-                                'targetText': related_entity['text'],
-                                'relation': relation_type
-                            })
-    #按start值进行排序
+                            # 创建一个source-target组合字符串来检查重复的链接
+                            source_target_str = f"{value['start']}-{related_entity['start']}"
+                            if source_target_str not in link_sources_targets:  # 检查该链接是否已经存在
+                                links.append({
+                                    'source': value['start'],
+                                    'target': related_entity['start'],
+                                    'sourceText': value['text'],
+                                    'sourceLabel': key,
+                                    'targetText': related_entity['text'],
+                                    'relation': relation_type
+                                })
+                                link_sources_targets.add(source_target_str)  # 将新链接的source-target组合添加到集合中
+
     nodes = sorted(nodes, key=lambda x: x['start'])
     links = sorted(links, key=lambda x: x['source'])
+
     return jsonify({
         'nodes': nodes,
         'links': links

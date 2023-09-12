@@ -149,6 +149,18 @@ docker ps
 docker stop xxxxxxx
 ```
 
+服务器重启后启动docker服务：
+
+```
+sudo systemctl start docker
+```
+
+立即重启服务器：
+
+```
+sudo reboot
+```
+
 ## 模型重构
 
 模型重构指的是我们将基于Paddle框架的UIE模型重新手动编写为不依赖飞桨框架的Pytorch版本，使用此版本可以不再需要安装数个GB的飞桨框架和PaddleNLP这个库，真正实现独立自主完成本项目。本Pytorch版本基于UIE模型在其论文中提到的思路复现得到，主要区别在于飞桨版本是以指针标注方式（双指针解码）构建的抽取式版本，而Pytorch版本是生成式。
