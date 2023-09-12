@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify
 #coding=utf-8
+from flask import Flask, request, jsonify
 from pprint import pprint
 from flask_cors import CORS
 from uie_predictor import UIEPredictor

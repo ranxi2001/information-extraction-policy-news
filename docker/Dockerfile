@@ -14,12 +14,12 @@ RUN python3 -m pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
 # 设置 Flask 环境变量
-ENV FLASK_APP=/app/uie_pytorch/uie-backend-api3.py
+ENV FLASK_APP=/app/uie_pytorch/uie-backend-api4.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 # 暴露端口 888
 EXPOSE 888
 
 # 运行 Flask 应用
-CMD ["python", "/app/uie_pytorch/uie-backend-api3.py"]
+CMD ["python", "/app/uie_pytorch/uie-backend-api4.py"]
 

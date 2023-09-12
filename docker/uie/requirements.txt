@@ -9,3 +9,4 @@ tqdm
 transformers
 onnx
 onnxruntime
+neo4j

@@ -6,7 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/uie-model/checkpoint/model_best3800" />
       <excludeFolder url="file://$MODULE_DIR$/uie-model/checkpoint/model_best4000" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="UIE" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

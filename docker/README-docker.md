@@ -71,7 +71,7 @@ cd ./docker
 然后开始构建镜像，如果是Windows上需要先启动客户端软件：
 
 ```sh
-docker buildx build --platform linux/arm64  -t onefly/uie-backend-api:arm64 .  -f Dockerfile
+docker buildx build --platform linux/arm64  -t onefly/uie-backend-api:arm64 .  -f Dockerfile --load
 ```
 
 > ps:
@@ -101,7 +101,7 @@ docker push onefly/uie-backend-api:arm64
 运行容器的第一步是拉取镜像：
 
 ```
-docker pull onefly/uie-backend-api:arm64
+docker pull onefly/uie-backend-api:latest
 docker pull onefly/torch-backend-api:arm64
 ```
 
@@ -114,7 +114,7 @@ docker run -p 888:888 onefly/uie-backend-api:arm64
 通过`Postman`等api调试工具验证无误后即可在后台运行,添加参数`-d`：
 
 ```
-docker run -d -p 888:888 onefly/uie-backend-api:arm64
+docker run -d -p 888:888 onefly/uie-backend-api:latest
 ```
 
 ```
