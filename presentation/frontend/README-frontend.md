@@ -96,6 +96,6 @@ ps -ef | grep nginx
 
 ![](https://img2023.cnblogs.com/blog/2910984/202309/2910984-20230911142505220-1677670470.png)
 
-将其放至服务器`/usr/local/nginx/html`目录下即可输入ip地址访问网页。
+将其放至服务器`/usr/local/nginx/html`目录下输入ip地址(默认代理80端口）即可访问网页。
 
 ![](https://img2023.cnblogs.com/blog/2910984/202309/2910984-20230911142254982-911479859.png)

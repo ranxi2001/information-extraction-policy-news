@@ -15,7 +15,7 @@
 
 > 针对源代码的使用说明
 
-### 环境配置
+## 环境配置
 
 建议创建一个python3.8的虚拟环境，可能需要安装[Rust Compiler](https://blog.csdn.net/qq_42103091/article/details/123751444)
 
@@ -131,3 +131,9 @@ pip install transformers -i http://mirrors.aliyun.com/pypi/simple/ --trusted-hos
 或者在线版：[PaddleNLP/README.md at develop · PaddlePaddle/PaddleNLP (github.com)](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/model_zoo/uie/README.md#模型微调)
 
 有关doccano协同标注平台搭建，AIStudio 使用A100 GPU训练项目可以联系我：19143656913
+
+# 部署说明
+
+后端api已经打包至docker，具体使用说明请看说明文档：[Docker后端使用说明](./docker/README-docker.md)
+
+前端静态网页提供完整直接可部署的文件夹，具体使用说明请看说明文档：[nginx前端使用说明](./presentation/frontend/README-frontend.md)
