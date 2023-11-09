@@ -136,7 +136,7 @@ pip install transformers -i http://mirrors.aliyun.com/pypi/simple/ --trusted-hos
 
 或者在线版：[PaddleNLP/README.md at develop · PaddlePaddle/PaddleNLP (github.com)](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/model_zoo/uie/README.md#模型微调)
 
-有关doccano协同标注平台搭建，AIStudio 使用A100 GPU训练项目可以联系我：19143656913
+有关doccano协同标注平台搭建，AIStudio 使用A100 GPU训练项目可以联系我：ranxi169@163.com
 
 # 部署说明
 
