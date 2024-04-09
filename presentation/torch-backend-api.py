@@ -110,7 +110,7 @@ class TranslateDataSet(Data.Dataset):
     def __getitem__(self, idx):
         return self.enc_input_all[idx], self.dec_input_all[idx], self.dec_output_all[idx]
 def supplement(word):
-    model.load_state_dict(torch.load('C:/Users/ranxi/Desktop/揭榜挑战赛/sentence-completion/best_model.pth'))
+    model.load_state_dict(torch.load('/sentence-completion/origin model/best_model.pth'))
     model.eval()
 
     input_tokens = list(jieba.cut(word, cut_all=False))
@@ -182,7 +182,7 @@ def complet():
 if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    file_path = 'C:/Users/ranxi/Desktop/揭榜挑战赛/sentence-completion/truncated_setence.json'
+    file_path = '/sentence-completion/origin model/truncated_setence.json'
     with open(file_path, 'r', encoding='utf-8') as file:
         sentence_data = json.load(file)
 
